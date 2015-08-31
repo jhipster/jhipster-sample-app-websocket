@@ -2,7 +2,7 @@
 
 describe('Controllers Tests ', function () {
 
-    beforeEach(module('jhipsterApp'));
+    beforeEach(module('samplewebsocketApp'));
 
     var $scope, q, Principal, Auth;
 

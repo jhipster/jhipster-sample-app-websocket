@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplewebsocketApp')
     .factory('MonitoringService', function ($rootScope, $http) {
         return {
             getMetrics: function () {

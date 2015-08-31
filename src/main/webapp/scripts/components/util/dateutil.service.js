@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jhipsterApp')
+angular.module('samplewebsocketApp')
     .service('DateUtils', function () {
       this.convertLocaleDateToServer = function(date) {
         if (date) {

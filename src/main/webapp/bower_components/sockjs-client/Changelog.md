@@ -1,3 +1,108 @@
+1.0.3
+==
+
+ * Use `https` module for xhr requests in node when url uses https - #254
+
+1.0.2
+==
+
+ * Fix iframe info receiver url
+ * Move iframe.contentWindow check inside setTimeout - #246
+
+1.0.1
+==
+
+ * Use proper base url for iframe-based info receiver - #249
+ * Don't register unload event in chrome packaged app - #223
+ * Allow custom session ids - #250
+ * Remove version property from bower.json - #247
+ * Update example CDN url - #244
+
+1.0.0
+===
+
+ * Simplify url handling by delegating to `url-parse` - #242
+ * Upgrade to `url-parse` 1.0.1 to fix colon issue if auth has no password
+
+1.0.0-beta.13
+===
+
+ * Transport timeout on connection should fallback - #238
+
+1.0.0-beta.12
+====
+
+ * Upgrade `url-parse` to 1.0.0 to fix #218 again
+
+1.0.0-beta.10
+====
+
+ * Upgrade `url-parse` to 0.2.3 to fix #222
+
+1.0.0-beta.9
+====
+
+ * Upgrade `url-parse` to 0.2.1 to fix 'too much recursion' errors
+
+1.0.0-beta.8
+====
+
+ * Upgrade `url-parse` to 0.2.0 to fix inheritance issues
+
+1.0.0-beta.7
+====
+
+ * Upgrade `url-parse` to 0.1.5 to fix #218
+ * Don't strip basic auth from url - #219
+
+1.0.0-beta.6
+====
+
+ * Upgrade `url-parse` to 0.1.3 to avoid CSP issues
+
+1.0.0-beta.5
+=====
+
+ * Upgrade `url-parse` to 0.1.1 to fix #214
+
+1.0.0-beta.4
+=====
+
+ * Upgrade `url-parse` to 0.1.0 and `sockjs` to 0.3.11
+ * Update .npmignore
+
+1.0.0-beta.3
+=====
+
+ * Move `debug` from devDependencies to dependencies
+
+1.0.0-beta.2
+=====
+
+ * Relax requirements when using same origin XHR - #80
+ * Upgrade to JSON3 from JSON2 - #123
+ * Package library with browserify supporting the UMD pattern - #184
+ * Move tests to JavaScript
+ * Add Gulp.js build script
+ * Fix getOrigin for file:/// urls and standard ports - #173
+ * Add onerror event handlers to Websockets - #169
+ * Increase RTO lower bound to prevent spurious timeouts on IE8/9 - #161
+ * Use window.crypto for random values when available - #128
+ * Fix handling of listeners added and removed mid-dispatch - #127
+ * Fix XHR Streaming for IE8 - #83
+ * Remove explicit AMD name - #107
+ * Check for an empty response from /info request - #143
+ * Add Content-Type to XHR requests to fix issue over HTTPS on Galaxy S4 - #164
+ * Fix iframe fallback when message is sent from a popup in IE7/8 - #166
+ * Add support for query strings on the url - #72
+ * Now works inside of Web Workers - #181
+ * Support EventSource / Server Sent Events outside of iframes - #201
+ * Rename protocols to transports - #65
+ * Allow transports which need the body to trigger on 'interactive' readyState - #175
+ * try/catch access to document.domain - #187
+ * Use `window.location` instead of `document.location` - #195
+ * Allow usage from node.js with same API
+
 0.3.4
 =====
 
@@ -9,6 +114,7 @@
  * Make `new` optional for SockJS constructor (via substack).
  * It is impossible to cancel JSONP polling request - compensate for that.
  * Refactored EventEmitter prototype (used only internally)
+ * #66 - Failure to post data to /xhr_send should kill the session
 
 
 0.3.2

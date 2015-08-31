@@ -1,6 +1,5 @@
 {
   "name": "sockjs-client",
-  "version": "0.3.4",
   "homepage": "http://sockjs.org",
   "authors": [
     "Bryce Kahle <bkahle@gmail.com>"
@@ -26,13 +25,14 @@
     "test",
     "tests"
   ],
-  "_release": "0.3.4",
+  "version": "1.0.3",
+  "_release": "1.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v0.3.4",
-    "commit": "0c70698bddcfab826c7b241ed709f69b5b0d41f7"
+    "tag": "v1.0.3",
+    "commit": "c887e34e23e6b4d18e1f1ce4848cf4f8b08f5109"
   },
   "_source": "git://github.com/sockjs/sockjs-client.git",
-  "_target": "0.3.4",
+  "_target": "1.0.3",
   "_originalSource": "sockjs-client"
 }

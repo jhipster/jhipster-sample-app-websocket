@@ -1,7 +1,7 @@
 {
-  "name": "jhipster",
+  "name": "samplewebsocket",
   "version": "0.0.0",
-  "description": "Description for jhipster",
+  "description": "Description for sampleWebsocket",
   "private": true,
   "dependencies": {
   },

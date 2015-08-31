@@ -1,27 +1,8 @@
-SockJS family:
 
-  * [SockJS-client](https://github.com/sockjs/sockjs-client) JavaScript client library
-  * [SockJS-node](https://github.com/sockjs/sockjs-node) Node.js server
-  * [SockJS-erlang](https://github.com/sockjs/sockjs-erlang) Erlang server
-  * [SockJS-lua](https://github.com/luvit/sockjs-luvit) Lua/Luvit server
-  * [SockJS-tornado](https://github.com/MrJoes/sockjs-tornado) Python/Tornado server
-  * [vert.x](https://github.com/vert-x/vert.x) Java/vert.x server
+# SockJS-client
 
-Work in progress:
-
-  * [SockJS-ruby](https://github.com/sockjs/sockjs-ruby)
-  * [SockJS-netty](https://github.com/cgbystrom/sockjs-netty)
-  * [SockJS-gevent](https://github.com/sdiehl/sockjs-gevent) ([SockJS-gevent fork](https://github.com/njoyce/sockjs-gevent))
-  * [pyramid-SockJS](https://github.com/fafhrd91/pyramid_sockjs)
-  * [wildcloud-websockets](https://github.com/wildcloud/wildcloud-websockets)
-  * [SockJS-cyclone](https://github.com/flaviogrossi/sockjs-cyclone)
-  * [SockJS-twisted](https://github.com/Fugiman/sockjs-twisted/)
-  * [wai-SockJS](https://github.com/Palmik/wai-sockjs)
-  * [SockJS-perl](https://github.com/vti/sockjs-perl)
-
-
-SockJS-client
-=============
+[![npm version](https://img.shields.io/npm/v/sockjs-client.svg?style=flat-square)](https://www.npmjs.com/package/sockjs-client)[![Build Status](https://img.shields.io/travis/sockjs/sockjs-client/master.svg?style=flat-square)](https://travis-ci.org/sockjs/sockjs-client)[![Dependencies](https://img.shields.io/david/sockjs/sockjs-client.svg?style=flat-square)](https://david-dm.org/sockjs/sockjs-client)[![Chat](https://img.shields.io/badge/Chat-gitter.im-blue.svg?style=flat-square)](https://gitter.im/sockjs/sockjs-client)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/brycekahle)](https://saucelabs.com/u/brycekahle)
 
 SockJS is a browser JavaScript library that provides a WebSocket-like
 object. SockJS gives you a coherent, cross-browser, Javascript API
@@ -33,7 +14,7 @@ fails it can use a variety of browser-specific transport protocols and
 presents them through WebSocket-like abstractions.
 
 SockJS is intended to work for all modern browsers and in environments
-which don't support WebSocket protcol, for example behind restrictive
+which don't support the WebSocket protocol -- for example, behind restrictive
 corporate proxies.
 
 SockJS-client does require a server counterpart:
@@ -48,13 +29,13 @@ Philosophy:
    [HTML5 Websockets API](http://dev.w3.org/html5/websockets/) as
    closely as possible.
  * All the transports must support cross domain connections out of the
-   box. It's possible and recommended to host SockJS server on
+   box. It's possible and recommended to host a SockJS server on a
    different server than your main web site.
- * There is a support for at least one streaming protocol for every
+ * There is support for at least one streaming protocol for every
    major browser.
  * Streaming transports should work cross-domain and
    should support cookies (for cookie-based sticky sessions).
- * Polling transports are be used as a fallback for old browsers and
+ * Polling transports are used as a fallback for old browsers and
    hosts behind restrictive proxies.
  * Connection establishment should be fast and lightweight.
  * No Flash inside (no need to open port 843 - which doesn't work
@@ -67,47 +48,60 @@ Subscribe to
 [SockJS mailing list](https://groups.google.com/forum/#!forum/sockjs) for
 discussions and support.
 
+SockJS family:
 
-Live QUnit tests and smoke tests
---------------------------------
+  * [SockJS-client](https://github.com/sockjs/sockjs-client) JavaScript client library
+  * [SockJS-node](https://github.com/sockjs/sockjs-node) Node.js server
+  * [SockJS-erlang](https://github.com/sockjs/sockjs-erlang) Erlang server
+  * [SockJS-cyclone](https://github.com/flaviogrossi/sockjs-cyclone) Python/Cyclone/Twisted server
+  * [SockJS-tornado](https://github.com/MrJoes/sockjs-tornado) Python/Tornado server
+  * [SockJS-twisted](https://github.com/DesertBus/sockjs-twisted/) Python/Twisted server
+  * [Spring Framework](http://projects.spring.io/spring-framework) Java [client](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/websocket.html#websocket-fallback-sockjs-client) & server
+  * [vert.x](https://github.com/vert-x/vert.x) Java/vert.x server
+  * [Xitrum](http://xitrum-framework.github.io/) Scala server
+  * [Atmosphere Framework](http://github.com/Atmosphere/atmosphere) JavaEE Server, Play Framework, Netty, Vert.x
 
-SockJS comes with some QUnit tests and a few smoke tests (using
-[SockJS-node](https://github.com/sockjs/sockjs-client) on the server
-side). At the moment they are deployed in few places:
+Work in progress:
 
- * http://sockjs.popcnt.org/ and https://sockjs.popcnt.org/ (hosted in Europe)
- * http://sockjs.cloudfoundry.com/ (CloudFoundry, websockets disabled, loadbalanced)
- * https://sockjs.cloudfoundry.com/ (CloudFoundry SSL, websockets disabled, loadbalanced)
+  * [SockJS-ruby](https://github.com/nyarly/sockjs-ruby)
+  * [SockJS-netty](https://github.com/cgbystrom/sockjs-netty)
+  * [SockJS-gevent](https://github.com/ksava/sockjs-gevent) ([SockJS-gevent fork](https://github.com/njoyce/sockjs-gevent))
+  * [pyramid-SockJS](https://github.com/fafhrd91/pyramid_sockjs)
+  * [wildcloud-websockets](https://github.com/wildcloud/wildcloud-websockets)
+  * [wai-SockJS](https://github.com/Palmik/wai-sockjs)
+  * [SockJS-perl](https://github.com/vti/sockjs-perl)
+  * [SockJS-go](https://github.com/igm/sockjs-go/)
 
-
-Example
+Getting Started
 -------
 
-SockJS mimics [WebSockets API](http://dev.w3.org/html5/websockets/)
+SockJS mimics the [WebSockets API](http://dev.w3.org/html5/websockets/),
 but instead of `WebSocket` there is a `SockJS` Javascript object.
 
-First, you need to load SockJS JavaScript library, for example you can
-put that in your http head:
+First, you need to load the SockJS JavaScript library. For example, you can
+put that in your HTML head:
 
-    <script src="http://cdn.sockjs.org/sockjs-0.3.min.js">
-      </script>
+```html
+<script src="//cdn.jsdelivr.net/sockjs/1.0.0/sockjs.min.js"></script>
+```
 
 After the script is loaded you can establish a connection with the
 SockJS server. Here's a simple example:
 
 ```javascript
-<script>
-   var sock = new SockJS('http://mydomain.com/my_prefix');
-   sock.onopen = function() {
-       console.log('open');
-   };
-   sock.onmessage = function(e) {
-       console.log('message', e.data);
-   };
-   sock.onclose = function() {
-       console.log('close');
-   };
-</script>
+ var sock = new SockJS('http://mydomain.com/my_prefix');
+ sock.onopen = function() {
+     console.log('open');
+ };
+ sock.onmessage = function(e) {
+     console.log('message', e.data);
+ };
+ sock.onclose = function() {
+     console.log('close');
+ };
+
+ sock.send('test');
+ sock.close();
 ```
 
 SockJS-client API
@@ -115,7 +109,7 @@ SockJS-client API
 
 ### SockJS class
 
-Similar to 'WebSocket' class 'SockJS' constructor takes one, or more arguments:
+Similar to the 'WebSocket' API, the 'SockJS' constructor takes one, or more arguments:
 
 ```javascript
 var sockjs = new SockJS(url, _reserved, options);
@@ -123,39 +117,42 @@ var sockjs = new SockJS(url, _reserved, options);
 
 Where `options` is a hash which can contain:
 
- *  **debug (boolean)**
+ *  **server (string)**
 
-    Print some debugging messages using 'console.log'.
+    String to append to url for actual data connection. Defaults to a random 4 digit number.
 
- *  **devel (boolean)**
+ *  **transports (string OR array of strings)**
 
-    Development mode. Currently setting it disables caching of the
-    'iframe.html'.
+    Sometimes it is useful to disable some fallback transports. This
+    option allows you to supply a list transports that may be used by
+    SockJS. By default all available transports will be used.
 
- *  **protocols_whitelist (list of strings)**
+ *  **sessionId (number OR function)**
 
-    Sometimes it is useful to disable some fallback protocols. This
-    option allows you to supply a list protocols that may be used by
-    SockJS. By default all available protocols will be used, which is
-    equivalent to supplying: "['websocket', 'xdr-streaming', 'xhr-streaming',
-    'iframe-eventsource', 'iframe-htmlfile', 'xdr-polling', 'xhr-polling',
-    'iframe-xhr-polling', 'jsonp-polling']"
-
+    Both client and server use session identifiers to distinguish connections.
+    If you specify this option as a number, SockJS will use its random string
+    generator function to generate session ids that are N-character long
+    (where N corresponds to the number specified by **sessionId**).
+    When you specify this option as a function, the function must return a
+    randomly generated string. Every time SockJS needs to generate a session
+    id it will call this function and use the returned string directly.
+    If you don't specify this option, the default is to use the default random
+    string generator to generate 8-character long session ids.
 
 Although the 'SockJS' object tries to emulate the 'WebSocket'
-behaviour, it's impossible to support all features. One of the
-important SockJS limitations is the fact that you're not allowed to
+behaviour, it's impossible to support all of its features. An
+important SockJS limitation is the fact that you're not allowed to
 open more than one SockJS connection to a single domain at a time.
-This limitation is caused by a in-browser limit of outgoing
+This limitation is caused by an in-browser limit of outgoing
 connections - usually [browsers don't allow opening more than two
-outgoing connections to a single domain](http://stackoverflow.com/questions/985431/max-parallel-http-connections-in-a-browser). Single SockJS session
-requires those two connections - one for downloading data, other for
-sending messages.  Opening second SockJS session at the same time
-would most probably block and can result in both sessions timing out.
+outgoing connections to a single domain](http://stackoverflow.com/questions/985431/max-parallel-http-connections-in-a-browser). A single SockJS session
+requires those two connections - one for downloading data, the other for
+sending messages.  Opening a second SockJS session at the same time
+would most likely block, and can result in both sessions timing out.
 
 Opening more than one SockJS connection at a time is generally a
 bad practice. If you absolutely must do it, you can use
-mutliple subdomains, using different subdomain for every
+multiple subdomains, using a different subdomain for every
 SockJS connection.
 
 Supported transports, by browser (html served from http:// or https://)
@@ -173,13 +170,14 @@ Firefox <10     | no &Dagger;      | xhr-streaming   | xhr-polling
 Firefox 10+     | hybi-10 / rfc6455| xhr-streaming   | xhr-polling
 Safari 5        | hixie-76         | xhr-streaming   | xhr-polling
 Opera 10.70+    | no &Dagger;      | iframe-eventsource | iframe-xhr-polling
+Opera 12.10+    | rfc6455          | xhr-streaming | xhr-polling
 Konqueror       | no               | no          | jsonp-polling
 
 
  * **&dagger;**: IE 8+ supports [XDomainRequest][^9], which is
-    esentially a modified AJAX/XHR that can do requests across
+    essentially a modified AJAX/XHR that can do requests across
     domains. But unfortunately it doesn't send any cookies, which
-    makes it inaproppriate for deployments when the load balancer uses
+    makes it inappropriate for deployments when the load balancer uses
     JSESSIONID cookie to do sticky sessions.
 
  * **&Dagger;**: Firefox 4.0 and Opera 11.00 and shipped with disabled
@@ -193,7 +191,7 @@ Sometimes you may want to serve your html from "file://" address - for
 development or if you're using PhoneGap or similar technologies. But
 due to the Cross Origin Policy files served from "file://" have no
 Origin, and that means some of SockJS transports won't work. For this
-reason the SockJS protocol table is different than usually, major
+reason the SockJS transport table is different than usually, major
 differences are:
 
 _Browser_       | _Websockets_  | _Streaming_        | _Polling_
@@ -211,7 +209,9 @@ websocket (hixie-76) | [draft-hixie-thewebsocketprotocol-76][^1]
 websocket (hybi-10)  | [draft-ietf-hybi-thewebsocketprotocol-10][^2]
 xhr-streaming        | Transport using [Cross domain XHR][^5] [streaming][^7] capability (readyState=3).
 xdr-streaming        | Transport using [XDomainRequest][^9] [streaming][^7] capability (readyState=3).
+eventsource          | [EventSource][^4].
 iframe-eventsource   | [EventSource][^4] used from an [iframe via postMessage][^3].
+htmlfile             | [HtmlFile][^8].
 iframe-htmlfile      | [HtmlFile][^8] used from an [iframe via postMessage][^3].
 xhr-polling          | Long-polling using [cross domain XHR][^5].
 xdr-polling          | Long-polling using [XDomainRequest][^9].
@@ -234,7 +234,7 @@ jsonp-polling        | Slow and old fashioned [JSONP polling][^6]. This transpor
 Connecting to SockJS without the client
 ---------------------------------------
 
-Although the main point of SockJS it to enable browser-to-server
+Although the main point of SockJS is to enable browser-to-server
 connectivity, it is possible to connect to SockJS from an external
 application. Any SockJS server complying with 0.3 protocol does
 support a raw WebSocket url. The raw WebSocket url for the test server
@@ -251,19 +251,13 @@ want to do so).
 Deployment
 ----------
 
-In order to utilize best performance you should use the SockJS-client
-releases hosted on SockJS CDN. You should use a version of sockjs-client
+You should use a version of sockjs-client
 that supports the protocol used by your server. For example:
 
-    <script src="http://cdn.sockjs.org/sockjs-0.3.min.js">
-      </script>
+```html
+<script src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+```
 
-A list of files hosted on a CDN is available here: http://sockjs.github.com/sockjs-client/ .
-
-You can also use or CDN via https (using Cloud Front domain name):
-
-    <script src="https://d1fxtkz8shb9d2.cloudfront.net/sockjs-0.3.js">
-      </script>
 
 For server-side deployment tricks, especially about load balancing and
 session stickiness, take a look at the
@@ -273,115 +267,70 @@ session stickiness, take a look at the
 Development and testing
 -----------------------
 
-SockJS-client needs [Node.js](http://nodejs.org/) for running a test
+SockJS-client needs [node.js](http://nodejs.org/) for running a test
 server and JavaScript minification. If you want to work on
-SockJS-client source code, check out the git repo and follow this
+SockJS-client source code, checkout the git repo and follow these
 steps:
 
     cd sockjs-client
     npm install
-    npm install --dev
 
-To generate JavaScript run:
+To generate JavaScript, run:
 
-    make sockjs.js
+    gulp browserify
 
-To generate minified JavaScript run:
+To generate minified JavaScript, run:
 
-    make sockjs.min.js
+    gulp browserify:min
 
-(To generate both run `make build`.)
-
+Both commands output into the `build` directory.
 
 ### Testing
 
-Once you compiled SockJS-client you may want to check if your changes
-pass all the tests. To run the tests you need a server that can answer
-various SockJS requests. A common way is to use `SockJS-node` test
-server for that. To run it (by default it will be listening on port 8081):
+Once you've compiled the SockJS-client you may want to check if your changes
+pass all the tests.
 
-    cd sockjs-node
-    npm install
-    npm install --dev
-    make build
-    make test_server
+    make test-local
 
-At this point you're ready to run a SockJS-client server that will
-server your freshly compiled JavaScript and various static http and
-javscript files (by default it will run on port 8080).
-
-    cd sockjs-client
-    make test
-
-At that point you should have two web servers running: sockjs-node on
-8081 and sockjs-client on 8080. When you open the browser on
-[http://localhost:8080/](http://localhost:8080/) you should be able
-run the QUnit tests against your sockjs-node server.
-
-If you look at your browser console you will see warnings like that:
-
-    Incompatibile SockJS! Main site uses: "a", the iframe: "b".
-
-This is due to a fact that SockJS-node test server is using compiled
-javascript from CDN, rather than your freshly compiled version. To fix
-that you must amend `sockjs_url` that is used by SockJS-node test
-server. Edit the [`config.js`](https://github.com/sockjs/sockjs-node/blob/master/examples/test_server/config.js) file:
-
-    vim sockjs-node/examples/test_server/config.js
-
-And replace `sockjs_url` setting which by default points to CDN:
-
-    sockjs_url: 'http://cdn.sockjs.org/sockjs-0.3.min.js',
-
-to a freshly compiled sockjs, for example:
-
-    sockjs_url: 'http://localhost:8080/lib/sockjs.js',
-
-
-Also, if you want to run tests agains SockJS server not running on
-`localhost:8081` you may want to edit the
-[`tests/config.js`](https://github.com/sockjs/sockjs-client/blob/master/tests/config.js)
-file.
-
-Additionally, if you're doing more serious development consider using
-`make serve`, which will automatically reload the server when you
-modify the source code.
-
+This will start [zuul](https://github.com/defunctzombie/zuul) and a test support server. Open the browser to [http://localhost:9090/_zuul](http://localhost:9090/_zuul) and watch the tests run.
 
 Browser Quirks
 --------------
 
 There are various browser quirks which we don't intend to address:
 
- * Pressing ESC in Firefox closes SockJS connection. For a workaround
+ * Pressing ESC in Firefox, before Firefox 20, closes the SockJS connection. For a workaround
    and discussion see [#18](https://github.com/sockjs/sockjs-client/issues/18).
- * Jsonp-polling transport will show a "spinning wheel" (aka. "busy indicator")
+ * `jsonp-polling` transport will show a "spinning wheel" (aka. "busy indicator")
    when sending data.
  * You can't open more than one SockJS connection to one domain at the
-   same time due to [the browsers limit of consurrent connections](http://stackoverflow.com/questions/985431/max-parallel-http-connections-in-a-browser)
-   (this limit is not counting native websockets connections).
+   same time due to [the browser's limit of concurrent connections](http://stackoverflow.com/questions/985431/max-parallel-http-connections-in-a-browser)
+   (this limit is not counting native WebSocket connections).
  * Although SockJS is trying to escape any strange Unicode characters
    (even invalid ones - [like surrogates \xD800-\xDBFF](http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters#Surrogates) or [\xFFFE and \xFFFF](https://en.wikipedia.org/wiki/Unicode#Character_General_Category))
    it's advisable to use only valid characters. Using invalid
    characters is a bit slower, and may not work with SockJS servers
-   that have a proper Unicode support.
+   that have proper Unicode support.
  * Having a global function called `onmessage` or such is probably a
    bad idea, as it could be called by the built-in `postMessage` API.
- * From SockJS point of view there is nothing special about
+ * From SockJS' point of view there is nothing special about
    SSL/HTTPS. Connecting between unencrypted and encrypted sites
    should work just fine.
- * Although SockJS does best to support both prefix and cookie based
+ * Although SockJS does its best to support both prefix and cookie based
    sticky sessions, the latter may not work well cross-domain with
    browsers that don't accept third-party cookies by default (Safari).
-   In order to get around this make sure you're connecting to sockjs
+   In order to get around this make sure you're connecting to SockJS
    from the same parent domain as the main site. For example
    'sockjs.a.com' is able to set cookies if you're connecting from
    'www.a.com' or 'a.com'.
  * Trying to connect from secure "https://" to insecure "http://" is
-   not good idea. The other way around should be fine.
- * Long polling is known to cause problems on Heroku, but
+   not a good idea. The other way around should be fine.
+ * Long polling is known to cause problems on Heroku, but a
    [workaround for SockJS is available](https://github.com/sockjs/sockjs-node/issues/57#issuecomment-5242187).
  * Don't use "javascript:" links on a page that uses SockJS. For
-   some reason clickling on this type of link breaks XDR/XHR requests
+   some reason clicking on this type of link breaks XDR/XHR requests
    on IE (see [#90](https://github.com/sockjs/sockjs-client/issues/90)).
- * SockJS [websocket transport is more stable over SSL](https://github.com/sockjs/sockjs-client/issues/94). If you're a serious SockJS user consider using SSL.
+ * SockJS [websocket transport is more stable over SSL](https://github.com/sockjs/sockjs-client/issues/94). If
+   you're a serious SockJS user then consider using SSL
+   ([more info](http://www.ietf.org/mail-archive/web/hybi/current/msg01605.html)).
+

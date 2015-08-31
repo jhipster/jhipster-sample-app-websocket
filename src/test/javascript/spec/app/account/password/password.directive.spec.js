@@ -2,7 +2,7 @@
 
 describe('Directive Tests ', function () {
 
-    beforeEach(module('jhipsterApp'));
+    beforeEach(module('samplewebsocketApp'));
 
     var elm, scope, $httpBackend;
 
