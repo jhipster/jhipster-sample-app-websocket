@@ -10,6 +10,7 @@ angular.module('samplewebsocketApp')
                         data = angular.fromJson(data);
                         return data;
                     }
-                }
+                },
+                'update': { method:'PUT' }
             });
         });

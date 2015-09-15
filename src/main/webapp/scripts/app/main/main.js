@@ -7,7 +7,7 @@ angular.module('samplewebsocketApp')
                 parent: 'site',
                 url: '/',
                 data: {
-                    roles: []
+                    authorities: []
                 },
                 views: {
                     'content@': {

@@ -24,6 +24,11 @@ mail:
     from: sampleWebsocket@localhost
 
 
+spring:
+    mvc:
+        favicon:
+            enabled: false
+
 swagger:
     title: sampleWebsocket API
     description: sampleWebsocket applications and beyond!

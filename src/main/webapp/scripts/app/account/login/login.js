@@ -7,7 +7,7 @@ angular.module('samplewebsocketApp')
                 parent: 'account',
                 url: '/login',
                 data: {
-                    roles: [], 
+                    authorities: [], 
                     pageTitle: 'login.title'
                 },
                 views: {

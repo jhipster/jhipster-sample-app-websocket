@@ -7,7 +7,7 @@ angular.module('samplewebsocketApp')
                 parent: 'account',
                 url: '/reset/request',
                 data: {
-                    roles: []
+                    authorities: []
                 },
                 views: {
                     'content@': {
