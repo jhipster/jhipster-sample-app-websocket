@@ -9,6 +9,6 @@ angular.module('samplewebsocketApp')
                     AlertService.success(alertKey, { param : response.headers('X-samplewebsocketApp-params')});
                 }
                 return response;
-            },
+            }
         };
     });
