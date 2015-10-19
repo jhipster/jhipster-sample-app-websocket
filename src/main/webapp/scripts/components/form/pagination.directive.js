@@ -1,8 +1,8 @@
 /* globals $ */
 'use strict';
 
-angular.module('samplewebsocketApp')
-    .directive('samplewebsocketAppPagination', function() {
+angular.module('sampleWebsocketApp')
+    .directive('sampleWebsocketAppPagination', function() {
         return {
             templateUrl: 'scripts/components/form/pagination.html'
         };

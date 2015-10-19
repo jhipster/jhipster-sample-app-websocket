@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .factory('AuthServerProvider', function loginService($http, localStorageService, $window, Tracker) {
         return {
             login: function(credentials) {

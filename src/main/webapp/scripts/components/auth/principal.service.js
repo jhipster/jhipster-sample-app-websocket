@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .factory('Principal', function Principal($q, Account, Tracker) {
         var _identity,
             _authenticated = false;

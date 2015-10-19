@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .directive('hasAnyAuthority', ['Principal', function (Principal) {
         return {
             restrict: 'A',

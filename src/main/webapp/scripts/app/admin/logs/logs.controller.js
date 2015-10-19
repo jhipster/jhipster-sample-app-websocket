@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .controller('LogsController', function ($scope, LogsService) {
         $scope.loggers = LogsService.findAll();
 

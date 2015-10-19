@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .service('DateUtils', function ($filter) {
       this.convertLocaleDateToServer = function(date) {
         if (date) {

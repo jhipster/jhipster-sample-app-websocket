@@ -1,7 +1,7 @@
 /* globals $ */
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .directive('showValidation', function() {
         return {
             restrict: 'A',

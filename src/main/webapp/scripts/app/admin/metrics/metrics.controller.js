@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .controller('MetricsController', function ($scope, MonitoringService, $modal) {
         $scope.metrics = {};
         $scope.updatingMetrics = true;

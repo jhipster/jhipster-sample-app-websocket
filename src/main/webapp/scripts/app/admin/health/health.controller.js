@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .controller('HealthController', function ($scope, MonitoringService, $modal) {
         $scope.updatingHealth = true;
         $scope.separator = '.';

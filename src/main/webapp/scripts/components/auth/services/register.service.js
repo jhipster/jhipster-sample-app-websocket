@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .factory('Register', function ($resource) {
         return $resource('api/register', {}, {
         });

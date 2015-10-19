@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .controller('HealthModalController', function($scope, $modalInstance, currentHealth, baseName, subSystemName) {
 
         $scope.currentHealth = currentHealth;

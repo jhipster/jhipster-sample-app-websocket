@@ -17,6 +17,9 @@
     "javaVersion": "8",
     "enableTranslation": true,
     "rememberMeKey": "293b44ac36c17e952804747c290158752d979717",
-    "useSass": false
+    "useSass": false,
+    "testFrameworks": [
+      "gatling"
+    ]
   }
 }

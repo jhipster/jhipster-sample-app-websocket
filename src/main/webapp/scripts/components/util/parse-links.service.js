@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .service('ParseLinks', function () {
         this.parse = function (header) {
             if (header.length == 0) {

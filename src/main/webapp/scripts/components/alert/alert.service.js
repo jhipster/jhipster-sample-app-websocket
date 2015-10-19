@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .factory('AlertService', function ($timeout, $sce,$translate) {
         var exports = {
             factory: factory,

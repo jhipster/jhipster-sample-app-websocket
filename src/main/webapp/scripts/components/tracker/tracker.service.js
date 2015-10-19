@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('samplewebsocketApp')
+angular.module('sampleWebsocketApp')
     .factory('Tracker', function ($rootScope, $cookies, $http, $q) {
         var stompClient = null;
         var subscriber = null;
