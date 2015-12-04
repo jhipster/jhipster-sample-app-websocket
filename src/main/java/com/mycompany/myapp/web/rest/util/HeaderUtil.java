@@ -26,4 +26,11 @@ public class HeaderUtil {
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
         return createAlert("sampleWebsocketApp." + entityName + ".deleted", param);
     }
+
+    public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-sampleWebsocketApp-error", "error." + errorKey);
+        headers.add("X-sampleWebsocketApp-params", entityName);
+        return headers;
+    }
 }
