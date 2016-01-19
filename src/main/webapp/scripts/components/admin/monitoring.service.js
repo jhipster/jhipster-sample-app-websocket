@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleWebsocketApp')
+angular.module('samplewebsocketApp')
     .factory('MonitoringService', function ($rootScope, $http) {
         return {
             getMetrics: function () {

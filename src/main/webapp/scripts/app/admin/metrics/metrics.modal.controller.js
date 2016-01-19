@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleWebsocketApp')
+angular.module('samplewebsocketApp')
     .controller('MetricsModalController', function($scope, $uibModalInstance, threadDump) {
 
         $scope.threadDump = threadDump;

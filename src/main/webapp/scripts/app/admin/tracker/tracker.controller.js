@@ -1,4 +1,4 @@
-angular.module('sampleWebsocketApp')
+angular.module('samplewebsocketApp')
     .controller('TrackerController', function ($scope, $cookies, $http, Tracker) {
         // This controller uses a Websocket connection to receive user activities in real-time.
 

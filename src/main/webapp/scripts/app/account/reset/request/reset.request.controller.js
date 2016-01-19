@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleWebsocketApp')
+angular.module('samplewebsocketApp')
     .controller('RequestResetController', function ($rootScope, $scope, $state, $timeout, Auth) {
 
         $scope.success = null;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sampleWebsocketApp')
+angular.module('samplewebsocketApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('metrics', {

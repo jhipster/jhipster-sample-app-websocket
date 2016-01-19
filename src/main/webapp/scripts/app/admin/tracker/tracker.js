@@ -1,4 +1,4 @@
-angular.module('sampleWebsocketApp')
+angular.module('samplewebsocketApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('tracker', {

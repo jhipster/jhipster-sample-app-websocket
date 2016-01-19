@@ -1,12 +1,12 @@
  'use strict';
 
-angular.module('sampleWebsocketApp')
+angular.module('samplewebsocketApp')
     .factory('notificationInterceptor', function ($q, AlertService) {
         return {
             response: function(response) {
-                var alertKey = response.headers('X-sampleWebsocketApp-alert');
+                var alertKey = response.headers('X-samplewebsocketApp-alert');
                 if (angular.isString(alertKey)) {
-                    AlertService.success(alertKey, { param : response.headers('X-sampleWebsocketApp-params')});
+                    AlertService.success(alertKey, { param : response.headers('X-samplewebsocketApp-params')});
                 }
                 return response;
             }
