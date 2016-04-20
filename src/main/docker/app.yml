@@ -1,0 +1,15 @@
+version: '2'
+services:
+    samplewebsocket-app:
+        image: samplewebsocket
+        external_links:
+            - samplewebsocket-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/samplewebsocket?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    samplewebsocket-mysql:
+        extends:
+            file: mysql.yml
+            service: samplewebsocket-mysql

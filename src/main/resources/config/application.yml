@@ -11,14 +11,17 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+
 spring:
+    application:
+        name: sampleWebsocket
     jpa:
         open-in-view: false
         hibernate:
             ddl-auto: none
             naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
     messages:
-        basename: classpath:/i18n/messages
+        basename: i18n/messages
     mvc:
         favicon:
             enabled: false
@@ -48,14 +51,16 @@ jhipster:
     mail:
         from: sampleWebsocket@localhost
     security:
-        rememberme:
+        rememberMe:
             # security key (this key should be unique for your application, and kept secret)
-            key: 293b44ac36c17e952804747c290158752d979717
+            key: 97c7efb72e69386921ee26bbbbbfa75b22c6c2a4
     swagger:
         title: sampleWebsocket API
         description: sampleWebsocket API documentation
         version: 0.0.1
         termsOfServiceUrl:
-        contact:
+        contactName:
+        contactUrl:
+        contactEmail:
         license:
         licenseUrl:

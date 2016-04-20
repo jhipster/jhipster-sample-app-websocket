@@ -11,8 +11,9 @@
 # ===================================================================
 
 spring:
+    application:
+        name: sampleWebsocket
     datasource:
-        driver-class-name: org.h2.jdbcx.JdbcDataSource
         url: jdbc:h2:mem:sampleWebsocket;DB_CLOSE_DELAY=-1
         name:
         username:
@@ -59,9 +60,9 @@ jhipster:
         maxPoolSize: 50
         queueCapacity: 10000
     security:
-        rememberme:
+        rememberMe:
             # security key (this key should be unique for your application, and kept secret)
-            key: 293b44ac36c17e952804747c290158752d979717
+            key: 97c7efb72e69386921ee26bbbbbfa75b22c6c2a4
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
     swagger:
@@ -69,6 +70,9 @@ jhipster:
         description: sampleWebsocket API documentation
         version: 0.0.1
         termsOfServiceUrl:
-        contact:
+        contactName:
+        contactUrl:
+        contactEmail:
         license:
         licenseUrl:
+        enabled: false
