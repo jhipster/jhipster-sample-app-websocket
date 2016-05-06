@@ -43,6 +43,8 @@
 
         function logout () {
             JhiTrackerService.disconnect();
+
+            
             // logout from the server
             $http.post('api/logout').success(function (response) {
                 delete $localStorage.authenticationToken;
@@ -50,6 +52,7 @@
                 $http.get('api/account');
                 return response;
             });
+            
         }
     }
 })();
