@@ -1,8 +1,8 @@
 version: '2'
 services:
-    samplewebsocket-sonar:
-        container_name: samplewebsocket-sonar
-        image: sonarqube:5.3
+    jhipsterwebsocketsampleapplication-sonar:
+        container_name: jhipsterwebsocketsampleapplication-sonar
+        image: sonarqube:5.5-alpine
         ports:
             - 9000:9000
             - 9092:9092

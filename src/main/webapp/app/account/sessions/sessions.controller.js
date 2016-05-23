@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .controller('SessionsController', SessionsController);
 
     SessionsController.$inject = ['Sessions', 'Principal'];

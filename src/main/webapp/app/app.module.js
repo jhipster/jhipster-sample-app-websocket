@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp', [
+        .module('jhipsterWebsocketSampleApplicationApp', [
             'ngStorage', 
             'tmh.dynamicLocale',
             'pascalprecht.translate', 

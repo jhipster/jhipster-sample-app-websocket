@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .directive('activeMenu', activeMenu);
 
     function activeMenu($translate, $locale, tmhDynamicLocale) {

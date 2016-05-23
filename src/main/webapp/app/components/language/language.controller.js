@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .controller('JhiLanguageController', JhiLanguageController);
 
     JhiLanguageController.$inject = ['$translate', 'JhiLanguageService', 'tmhDynamicLocale'];

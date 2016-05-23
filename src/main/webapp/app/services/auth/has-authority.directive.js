@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .directive('hasAuthority', hasAuthority);
 
     function hasAuthority(Principal) {

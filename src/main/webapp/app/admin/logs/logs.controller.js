@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .controller('LogsController', LogsController);
 
     LogsController.$inject = ['LogsService'];

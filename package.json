@@ -1,7 +1,7 @@
 {
-  "name": "sample-websocket",
+  "name": "jhipster-websocket-sample-application",
   "version": "0.0.0",
-  "description": "Description for sampleWebsocket",
+  "description": "Description for jhipsterWebsocketSampleApplication",
   "private": true,
   "cacheDirectories": [
     "node_modules",

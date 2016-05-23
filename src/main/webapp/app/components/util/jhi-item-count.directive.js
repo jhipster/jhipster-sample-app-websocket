@@ -14,6 +14,6 @@
     };
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .component('jhiItemCount', jhiItemCount);
 })();

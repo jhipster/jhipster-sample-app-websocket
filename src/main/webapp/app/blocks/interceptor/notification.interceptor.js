@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .factory('notificationInterceptor', notificationInterceptor);
 
     notificationInterceptor.$inject = ['$q', 'AlertService'];
@@ -15,9 +15,9 @@
         return service;
 
         function response (response) {
-            var alertKey = response.headers('X-sampleWebsocketApp-alert');
+            var alertKey = response.headers('X-jhipsterWebsocketSampleApplicationApp-alert');
             if (angular.isString(alertKey)) {
-                AlertService.success(alertKey, { param : response.headers('X-sampleWebsocketApp-params')});
+                AlertService.success(alertKey, { param : response.headers('X-jhipsterWebsocketSampleApplicationApp-params')});
             }
             return response;
         }

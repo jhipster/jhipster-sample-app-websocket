@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .controller('JhiTrackerController', JhiTrackerController);
 
     JhiTrackerController.$inject = ['$cookies', '$http', 'JhiTrackerService'];

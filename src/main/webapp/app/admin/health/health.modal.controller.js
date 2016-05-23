@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('sampleWebsocketApp')
+    angular.module('jhipsterWebsocketSampleApplicationApp')
         .controller('HealthModalController', HealthModalController);
 
     HealthModalController.$inject = ['$uibModalInstance', 'currentHealth', 'baseName', 'subSystemName'];

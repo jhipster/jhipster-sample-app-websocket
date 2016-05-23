@@ -3,7 +3,7 @@
     /* globals SockJS, Stomp */
 
     angular
-        .module('sampleWebsocketApp')
+        .module('jhipsterWebsocketSampleApplicationApp')
         .factory('JhiTrackerService', JhiTrackerService);
 
     JhiTrackerService.$inject = ['$rootScope', '$window', '$cookies', '$http', '$q'];
