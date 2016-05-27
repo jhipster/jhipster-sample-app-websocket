@@ -37,7 +37,12 @@ gulp.task('test', function () {
 });
 
 gulp.task('eslint', function () {
-  gulp.src(['lib/**/*.js'])
+  gulp.src([
+      'lib/**/*.js',
+      'tests/lib/**/*.js',
+      'tests/support/**/*.js',
+      'tests/*.js'
+    ])
     .pipe(eslint())
     .pipe(eslint.format());
 });
@@ -47,7 +52,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('write-version', function () {
-  fs.writeFileSync('./lib/version.js', "module.exports = '" + pkg.version + "';");
+  fs.writeFileSync('./lib/version.js', "module.exports = '" + pkg.version + "';\n");
 });
 
 gulp.task('testbundle', ['browserify:min'], function() {
@@ -108,6 +113,9 @@ gulp.task('release', ['browserify', 'browserify:min'], function () {
   // sockjs-{version}.js
   gulp.src('./build/sockjs.js')
     .pipe(rename(libName + '.js'))
+    .pipe(gulp.dest('./dist/'));
+
+  gulp.src('./build/sockjs.js.map')
     .pipe(gulp.dest('./dist/'));
 });
 
