@@ -68,7 +68,7 @@ module.exports = function (config) {
         reporters: ['dots', 'junit', 'coverage', 'progress'],
 
         junitReporter: {
-            outputFile: 'target/test-results/karma/TESTS-results.xml'
+            outputFile: '../target/test-results/karma/TESTS-results.xml'
         },
 
         coverageReporter: {
