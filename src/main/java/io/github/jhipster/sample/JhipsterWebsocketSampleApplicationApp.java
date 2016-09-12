@@ -72,5 +72,4 @@ public class JhipsterWebsocketSampleApplicationApp {
             env.getProperty("server.port"));
 
     }
-
 }
