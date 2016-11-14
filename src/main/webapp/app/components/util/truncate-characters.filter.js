@@ -4,7 +4,7 @@
     angular
         .module('jhipsterWebsocketSampleApplicationApp')
         .filter('characters', characters);
-        
+
     function characters () {
         return charactersFilter;
 
