@@ -23,12 +23,14 @@
       "en"
     ],
     "serverPort": 8080,
-    "jhipsterVersion": "3.12.2",
+    "jhipsterVersion": "4.0.0",
     "enableSocialSignIn": false,
     "rememberMeKey": "97c7efb72e69386921ee26bbbbbfa75b22c6c2a4",
     "useSass": false,
     "jhiPrefix": "jhi",
     "messageBroker": false,
-    "serviceDiscoveryType": false
+    "serviceDiscoveryType": false,
+    "clientPackageManager": "yarn",
+    "clientFramework": "angular1"
   }
 }
