@@ -1,7 +1,6 @@
 version: '2'
 services:
     jhipsterwebsocketsampleapplication-mysql:
-        container_name: jhipsterwebsocketsampleapplication-mysql
         image: mysql:5.7.13
         # volumes:
         #     - ~/volumes/jhipster/jhipsterWebsocketSampleApplication/mysql/:/var/lib/mysql/
