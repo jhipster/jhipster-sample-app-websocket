@@ -23,7 +23,7 @@
       "en"
     ],
     "serverPort": 8080,
-    "jhipsterVersion": "4.13.0",
+    "jhipsterVersion": "4.13.1",
     "enableSocialSignIn": false,
     "rememberMeKey": "97c7efb72e69386921ee26bbbbbfa75b22c6c2a4",
     "useSass": false,
@@ -31,6 +31,8 @@
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "clientPackageManager": "yarn",
-    "clientFramework": "angularX"
+    "clientFramework": "angularX",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true
   }
 }
