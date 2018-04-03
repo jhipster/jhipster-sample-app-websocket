@@ -1,51 +1,20 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbDateMomentAdapter } from './util/datepicker-adapter';
 import {
-    JhipsterWebsocketSampleApplicationSharedLibsModule,
-    JhipsterWebsocketSampleApplicationSharedCommonModule,
-    CSRFService,
-    AuthServerProvider,
-    AccountService,
-    UserService,
-    StateStorageService,
-    LoginService,
-    LoginModalService,
-    JhiLoginModalComponent,
-    Principal,
-    JhiTrackerService,
-    HasAnyAuthorityDirective,
+  JhipsterWebsocketSampleApplicationSharedLibsModule,
+  JhipsterWebsocketSampleApplicationSharedCommonModule,
+  JhiLoginModalComponent,
+  HasAnyAuthorityDirective
 } from './';
 
 @NgModule({
-    imports: [
-        JhipsterWebsocketSampleApplicationSharedLibsModule,
-        JhipsterWebsocketSampleApplicationSharedCommonModule
-    ],
-    declarations: [
-        JhiLoginModalComponent,
-        HasAnyAuthorityDirective
-    ],
-    providers: [
-        LoginService,
-        LoginModalService,
-        AccountService,
-        StateStorageService,
-        Principal,
-        CSRFService,
-        JhiTrackerService,
-        AuthServerProvider,
-        UserService,
-        DatePipe
-    ],
-    entryComponents: [JhiLoginModalComponent],
-    exports: [
-        JhipsterWebsocketSampleApplicationSharedCommonModule,
-        JhiLoginModalComponent,
-        HasAnyAuthorityDirective,
-        DatePipe
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
-
+  imports: [JhipsterWebsocketSampleApplicationSharedLibsModule, JhipsterWebsocketSampleApplicationSharedCommonModule],
+  declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
+  providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
+  entryComponents: [JhiLoginModalComponent],
+  exports: [JhipsterWebsocketSampleApplicationSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JhipsterWebsocketSampleApplicationSharedModule {}
