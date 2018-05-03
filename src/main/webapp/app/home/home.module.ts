@@ -5,10 +5,10 @@ import { JhipsterWebsocketSampleApplicationSharedModule } from 'app/shared';
 import { HOME_ROUTE, HomeComponent } from './';
 
 @NgModule({
-  imports: [JhipsterWebsocketSampleApplicationSharedModule, RouterModule.forChild([HOME_ROUTE])],
-  declarations: [HomeComponent],
-  entryComponents: [],
-  providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    imports: [JhipsterWebsocketSampleApplicationSharedModule, RouterModule.forChild([HOME_ROUTE])],
+    declarations: [HomeComponent],
+    entryComponents: [],
+    providers: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class JhipsterWebsocketSampleApplicationHomeModule {}
