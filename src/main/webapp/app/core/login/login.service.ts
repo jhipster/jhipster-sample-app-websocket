@@ -5,7 +5,7 @@ import { Principal } from '../auth/principal.service';
 import { AuthServerProvider } from '../auth/auth-session.service';
 import { JhiTrackerService } from '../tracker/tracker.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoginService {
     constructor(
         private languageService: JhiLanguageService,

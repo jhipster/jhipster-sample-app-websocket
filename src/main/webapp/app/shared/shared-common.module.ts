@@ -5,7 +5,6 @@ import { JhipsterWebsocketSampleApplicationSharedLibsModule, FindLanguageFromKey
 @NgModule({
     imports: [JhipsterWebsocketSampleApplicationSharedLibsModule],
     declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent],
-    providers: [],
     exports: [JhipsterWebsocketSampleApplicationSharedLibsModule, FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent]
 })
 export class JhipsterWebsocketSampleApplicationSharedCommonModule {}

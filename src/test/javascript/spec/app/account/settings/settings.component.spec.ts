@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
+import { Observable, throwError } from 'rxjs';
 
 import { JhipsterWebsocketSampleApplicationTestModule } from '../../../test.module';
 import { Principal, AccountService } from 'app/core';
@@ -14,22 +14,20 @@ describe('Component Tests', () => {
         let mockAuth: any;
         let mockPrincipal: any;
 
-        beforeEach(
-            async(() => {
-                TestBed.configureTestingModule({
-                    imports: [JhipsterWebsocketSampleApplicationTestModule],
-                    declarations: [SettingsComponent],
-                    providers: [
-                        {
-                            provide: JhiTrackerService,
-                            useClass: MockTrackerService
-                        }
-                    ]
-                })
-                    .overrideTemplate(SettingsComponent, '')
-                    .compileComponents();
+        beforeEach(async(() => {
+            TestBed.configureTestingModule({
+                imports: [JhipsterWebsocketSampleApplicationTestModule],
+                declarations: [SettingsComponent],
+                providers: [
+                    {
+                        provide: JhiTrackerService,
+                        useClass: MockTrackerService
+                    }
+                ]
             })
-        );
+                .overrideTemplate(SettingsComponent, '')
+                .compileComponents();
+        }));
 
         beforeEach(() => {
             fixture = TestBed.createComponent(SettingsComponent);
@@ -79,7 +77,7 @@ describe('Component Tests', () => {
 
         it('should notify of error upon failed save', () => {
             // GIVEN
-            mockAuth.saveSpy.and.returnValue(Observable.throw('ERROR'));
+            mockAuth.saveSpy.and.returnValue(throwError('ERROR'));
 
             // WHEN
             comp.save();
