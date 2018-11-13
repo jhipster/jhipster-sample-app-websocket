@@ -17,4 +17,10 @@ import {
     exports: [JhipsterWebsocketSampleApplicationSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class JhipsterWebsocketSampleApplicationSharedModule {}
+export class JhipsterWebsocketSampleApplicationSharedModule {
+    static forRoot() {
+        return {
+            ngModule: JhipsterWebsocketSampleApplicationSharedModule
+        };
+    }
+}
