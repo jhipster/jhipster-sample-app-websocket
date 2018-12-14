@@ -10,103 +10,103 @@ import * as Stomp from 'webstomp-client';
 
 @Injectable({ providedIn: 'root' })
 export class JhiTrackerService {
-    stompClient = null;
-    subscriber = null;
-    connection: Promise<any>;
-    connectedPromise: any;
-    listener: Observable<any>;
-    listenerObserver: Observer<any>;
-    alreadyConnectedOnce = false;
-    private subscription: Subscription;
+  stompClient = null;
+  subscriber = null;
+  connection: Promise<any>;
+  connectedPromise: any;
+  listener: Observable<any>;
+  listenerObserver: Observer<any>;
+  alreadyConnectedOnce = false;
+  private subscription: Subscription;
 
-    constructor(
-        private router: Router,
-        private $window: WindowRef,
-        // tslint:disable-next-line: no-unused-variable
-        private csrfService: CSRFService
-    ) {
-        this.connection = this.createConnection();
-        this.listener = this.createListener();
+  constructor(
+    private router: Router,
+    private $window: WindowRef,
+    // tslint:disable-next-line: no-unused-variable
+    private csrfService: CSRFService
+  ) {
+    this.connection = this.createConnection();
+    this.listener = this.createListener();
+  }
+
+  connect() {
+    if (this.connectedPromise === null) {
+      this.connection = this.createConnection();
     }
-
-    connect() {
-        if (this.connectedPromise === null) {
-            this.connection = this.createConnection();
-        }
-        // building absolute path so that websocket doesn't fail when deploying with a context path
-        const loc = this.$window.nativeWindow.location;
-        let url;
-        url = '//' + loc.host + loc.pathname + 'websocket/tracker';
-        const socket = new SockJS(url);
-        this.stompClient = Stomp.over(socket);
-        const headers = {};
-        headers['X-XSRF-TOKEN'] = this.csrfService.getCSRF('XSRF-TOKEN');
-        this.stompClient.connect(
-            headers,
-            () => {
-                this.connectedPromise('success');
-                this.connectedPromise = null;
-                this.sendActivity();
-                if (!this.alreadyConnectedOnce) {
-                    this.subscription = this.router.events.subscribe(event => {
-                        if (event instanceof NavigationEnd) {
-                            this.sendActivity();
-                        }
-                    });
-                    this.alreadyConnectedOnce = true;
-                }
+    // building absolute path so that websocket doesn't fail when deploying with a context path
+    const loc = this.$window.nativeWindow.location;
+    let url;
+    url = '//' + loc.host + loc.pathname + 'websocket/tracker';
+    const socket = new SockJS(url);
+    this.stompClient = Stomp.over(socket);
+    const headers = {};
+    headers['X-XSRF-TOKEN'] = this.csrfService.getCSRF('XSRF-TOKEN');
+    this.stompClient.connect(
+      headers,
+      () => {
+        this.connectedPromise('success');
+        this.connectedPromise = null;
+        this.sendActivity();
+        if (!this.alreadyConnectedOnce) {
+          this.subscription = this.router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+              this.sendActivity();
             }
-        );
-    }
-
-    disconnect() {
-        if (this.stompClient !== null) {
-            this.stompClient.disconnect();
-            this.stompClient = null;
+          });
+          this.alreadyConnectedOnce = true;
         }
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-            this.subscription = null;
-        }
-        this.alreadyConnectedOnce = false;
-    }
+      }
+    );
+  }
 
-    receive() {
-        return this.listener;
+  disconnect() {
+    if (this.stompClient !== null) {
+      this.stompClient.disconnect();
+      this.stompClient = null;
     }
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
+    this.alreadyConnectedOnce = false;
+  }
 
-    sendActivity() {
-        if (this.stompClient !== null && this.stompClient.connected) {
-            this.stompClient.send(
-                '/topic/activity', // destination
-                JSON.stringify({ page: this.router.routerState.snapshot.url }), // body
-                {} // header
-            );
-        }
-    }
+  receive() {
+    return this.listener;
+  }
 
-    subscribe() {
-        this.connection.then(() => {
-            this.subscriber = this.stompClient.subscribe('/topic/tracker', data => {
-                this.listenerObserver.next(JSON.parse(data.body));
-            });
-        });
+  sendActivity() {
+    if (this.stompClient !== null && this.stompClient.connected) {
+      this.stompClient.send(
+        '/topic/activity', // destination
+        JSON.stringify({ page: this.router.routerState.snapshot.url }), // body
+        {} // header
+      );
     }
+  }
 
-    unsubscribe() {
-        if (this.subscriber !== null) {
-            this.subscriber.unsubscribe();
-        }
-        this.listener = this.createListener();
-    }
+  subscribe() {
+    this.connection.then(() => {
+      this.subscriber = this.stompClient.subscribe('/topic/tracker', data => {
+        this.listenerObserver.next(JSON.parse(data.body));
+      });
+    });
+  }
 
-    private createListener(): Observable<any> {
-        return new Observable(observer => {
-            this.listenerObserver = observer;
-        });
+  unsubscribe() {
+    if (this.subscriber !== null) {
+      this.subscriber.unsubscribe();
     }
+    this.listener = this.createListener();
+  }
 
-    private createConnection(): Promise<any> {
-        return new Promise((resolve, reject) => (this.connectedPromise = resolve));
-    }
+  private createListener(): Observable<any> {
+    return new Observable(observer => {
+      this.listenerObserver = observer;
+    });
+  }
+
+  private createConnection(): Promise<any> {
+    return new Promise((resolve, reject) => (this.connectedPromise = resolve));
+  }
 }
