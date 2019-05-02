@@ -3,7 +3,6 @@ export * from './auth/state-storage.service';
 export * from './auth/account.service';
 export * from './auth/auth-session.service';
 export * from './tracker/tracker.service';
-export * from './tracker/window.service';
 export * from './language/language.helper';
 export * from './language/language.constants';
 export * from './user/account.model';
