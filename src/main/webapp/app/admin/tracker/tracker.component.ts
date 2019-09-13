@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { JhiTrackerService } from 'app/core';
+import { JhiTrackerService } from 'app/core/tracker/tracker.service';
 
 @Component({
   selector: 'jhi-tracker',

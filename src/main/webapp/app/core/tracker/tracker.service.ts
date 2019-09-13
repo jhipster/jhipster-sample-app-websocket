@@ -19,12 +19,7 @@ export class JhiTrackerService {
   alreadyConnectedOnce = false;
   private subscription: Subscription;
 
-  constructor(
-    private router: Router,
-    private location: Location,
-    // tslint:disable-next-line: no-unused-variable
-    private csrfService: CSRFService
-  ) {
+  constructor(private router: Router, private location: Location, private csrfService: CSRFService) {
     this.connection = this.createConnection();
     this.listener = this.createListener();
   }

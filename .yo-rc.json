@@ -15,15 +15,10 @@
     "buildTool": "maven",
     "enableTranslation": true,
     "applicationType": "monolith",
-    "testFrameworks": [
-      "gatling",
-      "protractor"
-    ],
-    "languages": [
-      "en"
-    ],
+    "testFrameworks": ["gatling", "protractor"],
+    "languages": ["en"],
     "serverPort": 8080,
-    "jhipsterVersion": "6.2.0",
+    "jhipsterVersion": "6.3.0",
     "enableSocialSignIn": false,
     "rememberMeKey": "97c7efb72e69386921ee26bbbbbfa75b22c6c2a4",
     "useSass": true,
@@ -39,6 +34,7 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "clientTheme": "none",
-    "blueprints": []
+    "blueprints": [],
+    "embeddableLaunchScript": false
   }
 }
