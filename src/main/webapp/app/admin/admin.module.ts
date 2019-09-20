@@ -5,10 +5,6 @@ import { JhipsterWebsocketSampleApplicationSharedModule } from 'app/shared/share
 
 import { adminState } from './admin.route';
 import { AuditsComponent } from './audits/audits.component';
-import { UserMgmtComponent } from './user-management/user-management.component';
-import { UserMgmtDetailComponent } from './user-management/user-management-detail.component';
-import { UserMgmtUpdateComponent } from './user-management/user-management-update.component';
-import { UserMgmtDeleteDialogComponent } from './user-management/user-management-delete-dialog.component';
 import { LogsComponent } from './logs/logs.component';
 import { JhiMetricsMonitoringComponent } from './metrics/metrics.component';
 import { JhiHealthModalComponent } from './health/health-modal.component';
@@ -25,10 +21,6 @@ import { JhiTrackerComponent } from './tracker/tracker.component';
   ],
   declarations: [
     AuditsComponent,
-    UserMgmtComponent,
-    UserMgmtDetailComponent,
-    UserMgmtUpdateComponent,
-    UserMgmtDeleteDialogComponent,
     LogsComponent,
     JhiConfigurationComponent,
     JhiHealthCheckComponent,
@@ -37,6 +29,6 @@ import { JhiTrackerComponent } from './tracker/tracker.component';
     JhiTrackerComponent,
     JhiMetricsMonitoringComponent
   ],
-  entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent]
+  entryComponents: [JhiHealthModalComponent]
 })
 export class JhipsterWebsocketSampleApplicationAdminModule {}
