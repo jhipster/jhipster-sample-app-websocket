@@ -4,6 +4,7 @@ import { throwError } from 'rxjs';
 
 import { JhipsterWebsocketSampleApplicationTestModule } from '../../../test.module';
 import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
 import { SettingsComponent } from 'app/account/settings/settings.component';
 import { JhiTrackerService } from 'app/core/tracker/tracker.service';
 import { MockTrackerService } from '../../../helpers/mock-tracker.service';
@@ -38,14 +39,16 @@ describe('Component Tests', () => {
 
     it('should send the current identity upon save', () => {
       // GIVEN
-      const accountValues = {
+      const accountValues: Account = {
         firstName: 'John',
         lastName: 'Doe',
 
         activated: true,
         email: 'john.doe@mail.com',
         langKey: 'en',
-        login: 'john'
+        login: 'john',
+        authorities: [],
+        imageUrl: ''
       };
       mockAuth.setIdentityResponse(accountValues);
 
