@@ -98,6 +98,6 @@ export class JhiTrackerService {
   }
 
   private createConnection(): Promise<any> {
-    return new Promise((resolve, reject) => (this.connectedPromise = resolve));
+    return new Promise(resolve => (this.connectedPromise = resolve));
   }
 }
