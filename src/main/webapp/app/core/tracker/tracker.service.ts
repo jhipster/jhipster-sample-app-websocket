@@ -1,103 +1,103 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { Observable, Observer, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
-
-import { CSRFService } from '../auth/csrf.service';
-
+import { Router, NavigationEnd, Event } from '@angular/router';
+import { Subscription, ReplaySubject, Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'webstomp-client';
 
+import { CSRFService } from 'app/core/auth/csrf.service';
+import { TrackerActivity } from './tracker-activity.model';
+
 @Injectable({ providedIn: 'root' })
-export class JhiTrackerService {
-  stompClient = null;
-  subscriber = null;
-  connection: Promise<any>;
-  connectedPromise: any;
-  listener: Observable<any>;
-  listenerObserver: Observer<any>;
-  alreadyConnectedOnce = false;
-  private subscription: Subscription;
+export class TrackerService {
+  private stompClient: Stomp.Client | null = null;
+  private routerSubscription: Subscription | null = null;
+  private connectionSubject: ReplaySubject<void> = new ReplaySubject(1);
+  private connectionSubscription: Subscription | null = null;
+  private stompSubscription: Stomp.Subscription | null = null;
+  private listenerSubject: Subject<TrackerActivity> = new Subject();
 
-  constructor(private router: Router, private location: Location, private csrfService: CSRFService) {
-    this.connection = this.createConnection();
-    this.listener = this.createListener();
-  }
+  constructor(private router: Router, private csrfService: CSRFService, private location: Location) {}
 
-  connect() {
-    if (this.connectedPromise === null) {
-      this.connection = this.createConnection();
+  connect(): void {
+    if (this.stompClient && this.stompClient.connected) {
+      return;
     }
+
     // building absolute path so that websocket doesn't fail when deploying with a context path
     let url = '/websocket/tracker';
     url = this.location.prepareExternalUrl(url);
-    const socket = new SockJS(url);
+    const socket: WebSocket = new SockJS(url);
     this.stompClient = Stomp.over(socket);
-    const headers = {};
+    const headers: Stomp.ConnectionHeaders = {};
     headers['X-XSRF-TOKEN'] = this.csrfService.getCSRF('XSRF-TOKEN');
     this.stompClient.connect(headers, () => {
-      this.connectedPromise('success');
-      this.connectedPromise = null;
+      this.connectionSubject.next();
+
       this.sendActivity();
-      if (!this.alreadyConnectedOnce) {
-        this.subscription = this.router.events.subscribe(event => {
-          if (event instanceof NavigationEnd) {
-            this.sendActivity();
-          }
+
+      this.routerSubscription = this.router.events
+        .pipe(filter((event: Event) => event instanceof NavigationEnd))
+        .subscribe(() => this.sendActivity());
+    });
+  }
+
+  disconnect(): void {
+    this.unsubscribe();
+
+    this.connectionSubject = new ReplaySubject(1);
+
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+      this.routerSubscription = null;
+    }
+
+    if (this.stompClient) {
+      if (this.stompClient.connected) {
+        this.stompClient.disconnect();
+      }
+      this.stompClient = null;
+    }
+  }
+
+  receive(): Subject<TrackerActivity> {
+    return this.listenerSubject;
+  }
+
+  subscribe(): void {
+    if (this.connectionSubscription) {
+      return;
+    }
+
+    this.connectionSubscription = this.connectionSubject.subscribe(() => {
+      if (this.stompClient) {
+        this.stompSubscription = this.stompClient.subscribe('/topic/tracker', (data: Stomp.Message) => {
+          this.listenerSubject.next(JSON.parse(data.body));
         });
-        this.alreadyConnectedOnce = true;
       }
     });
   }
 
-  disconnect() {
-    if (this.stompClient !== null) {
-      this.stompClient.disconnect();
-      this.stompClient = null;
+  unsubscribe(): void {
+    if (this.stompSubscription) {
+      this.stompSubscription.unsubscribe();
+      this.stompSubscription = null;
     }
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-      this.subscription = null;
+
+    if (this.connectionSubscription) {
+      this.connectionSubscription.unsubscribe();
+      this.connectionSubscription = null;
     }
-    this.alreadyConnectedOnce = false;
   }
 
-  receive() {
-    return this.listener;
-  }
-
-  sendActivity() {
-    if (this.stompClient !== null && this.stompClient.connected) {
+  private sendActivity(): void {
+    if (this.stompClient && this.stompClient.connected) {
       this.stompClient.send(
         '/topic/activity', // destination
         JSON.stringify({ page: this.router.routerState.snapshot.url }), // body
         {} // header
       );
     }
-  }
-
-  subscribe() {
-    this.connection.then(() => {
-      this.subscriber = this.stompClient.subscribe('/topic/tracker', data => {
-        this.listenerObserver.next(JSON.parse(data.body));
-      });
-    });
-  }
-
-  unsubscribe() {
-    if (this.subscriber !== null) {
-      this.subscriber.unsubscribe();
-    }
-    this.listener = this.createListener();
-  }
-
-  private createListener(): Observable<any> {
-    return new Observable(observer => {
-      this.listenerObserver = observer;
-    });
-  }
-
-  private createConnection(): Promise<any> {
-    return new Promise(resolve => (this.connectedPromise = resolve));
   }
 }

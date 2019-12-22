@@ -8,7 +8,7 @@ import { JhipsterWebsocketSampleApplicationAppRoutingModule } from './app-routin
 import { JhipsterWebsocketSampleApplicationHomeModule } from './home/home.module';
 import { JhipsterWebsocketSampleApplicationEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent } from './layouts/main/main.component';
+import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
@@ -25,7 +25,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     JhipsterWebsocketSampleApplicationEntityModule,
     JhipsterWebsocketSampleApplicationAppRoutingModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
-  bootstrap: [JhiMainComponent]
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  bootstrap: [MainComponent]
 })
 export class JhipsterWebsocketSampleApplicationAppModule {}

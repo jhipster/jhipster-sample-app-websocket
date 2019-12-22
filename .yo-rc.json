@@ -18,7 +18,7 @@
     "testFrameworks": ["gatling", "protractor"],
     "languages": ["en"],
     "serverPort": 8080,
-    "jhipsterVersion": "6.5.1",
+    "jhipsterVersion": "6.6.0",
     "enableSocialSignIn": false,
     "rememberMeKey": "97c7efb72e69386921ee26bbbbbfa75b22c6c2a4",
     "useSass": true,
@@ -35,6 +35,7 @@
     "dtoSuffix": "DTO",
     "clientTheme": "none",
     "blueprints": [],
-    "embeddableLaunchScript": false
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1577001545473
   }
 }

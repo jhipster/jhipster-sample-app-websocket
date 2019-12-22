@@ -26,4 +26,4 @@ import { accountState } from './account.route';
     SettingsComponent
   ]
 })
-export class JhipsterWebsocketSampleApplicationAccountModule {}
+export class AccountModule {}

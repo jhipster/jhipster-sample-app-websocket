@@ -6,8 +6,6 @@ import { of, throwError } from 'rxjs';
 import { JhipsterWebsocketSampleApplicationTestModule } from '../../../test.module';
 import { PasswordComponent } from 'app/account/password/password.component';
 import { PasswordService } from 'app/account/password/password.service';
-import { JhiTrackerService } from 'app/core/tracker/tracker.service';
-import { MockTrackerService } from '../../../helpers/mock-tracker.service';
 
 describe('Component Tests', () => {
   describe('PasswordComponent', () => {
@@ -19,13 +17,7 @@ describe('Component Tests', () => {
       TestBed.configureTestingModule({
         imports: [JhipsterWebsocketSampleApplicationTestModule],
         declarations: [PasswordComponent],
-        providers: [
-          FormBuilder,
-          {
-            provide: JhiTrackerService,
-            useClass: MockTrackerService
-          }
-        ]
+        providers: [FormBuilder]
       })
         .overrideTemplate(PasswordComponent, '')
         .compileComponents();
@@ -46,9 +38,9 @@ describe('Component Tests', () => {
       // WHEN
       comp.changePassword();
       // THEN
-      expect(comp.doNotMatch).toBe('ERROR');
-      expect(comp.error).toBeNull();
-      expect(comp.success).toBeNull();
+      expect(comp.doNotMatch).toBe(true);
+      expect(comp.error).toBe(false);
+      expect(comp.success).toBe(false);
     });
 
     it('should call Auth.changePassword when passwords match', () => {
@@ -73,7 +65,7 @@ describe('Component Tests', () => {
       expect(service.save).toHaveBeenCalledWith(passwordValues.newPassword, passwordValues.currentPassword);
     });
 
-    it('should set success to OK upon success', function() {
+    it('should set success to true upon success', () => {
       // GIVEN
       spyOn(service, 'save').and.returnValue(of(new HttpResponse({ body: true })));
       comp.passwordForm.patchValue({
@@ -85,12 +77,12 @@ describe('Component Tests', () => {
       comp.changePassword();
 
       // THEN
-      expect(comp.doNotMatch).toBeNull();
-      expect(comp.error).toBeNull();
-      expect(comp.success).toBe('OK');
+      expect(comp.doNotMatch).toBe(false);
+      expect(comp.error).toBe(false);
+      expect(comp.success).toBe(true);
     });
 
-    it('should notify of error if change password fails', function() {
+    it('should notify of error if change password fails', () => {
       // GIVEN
       spyOn(service, 'save').and.returnValue(throwError('ERROR'));
       comp.passwordForm.patchValue({
@@ -102,9 +94,9 @@ describe('Component Tests', () => {
       comp.changePassword();
 
       // THEN
-      expect(comp.doNotMatch).toBeNull();
-      expect(comp.success).toBeNull();
-      expect(comp.error).toBe('ERROR');
+      expect(comp.doNotMatch).toBe(false);
+      expect(comp.success).toBe(false);
+      expect(comp.error).toBe(true);
     });
   });
 });

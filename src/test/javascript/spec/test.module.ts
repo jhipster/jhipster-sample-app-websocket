@@ -5,11 +5,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService, JhiDataUtils, JhiDateUtils, JhiEventManager, JhiAlertService, JhiParseLinks } from 'ng-jhipster';
 
-import { MockLanguageService, MockLanguageHelper } from './helpers/mock-language.service';
-import { JhiLanguageHelper } from 'app/core/language/language.helper';
+import { MockLanguageService } from './helpers/mock-language.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { LoginModalService } from 'app/core/login/login-modal.service';
-import { JhiTrackerService } from 'app/core/tracker/tracker.service';
 import { MockAccountService } from './helpers/mock-account.service';
 import { MockActivatedRoute, MockRouter } from './helpers/mock-route.service';
 import { MockActiveModal } from './helpers/mock-active-modal.service';
@@ -24,14 +22,6 @@ import { MockEventManager } from './helpers/mock-event-manager.service';
     {
       provide: JhiLanguageService,
       useClass: MockLanguageService
-    },
-    {
-      provide: JhiLanguageHelper,
-      useClass: MockLanguageHelper
-    },
-    {
-      provide: JhiTrackerService,
-      useValue: null
     },
     {
       provide: JhiEventManager,

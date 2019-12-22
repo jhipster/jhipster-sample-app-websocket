@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
 
-import { JhiTrackerComponent } from './tracker.component';
+import { TrackerComponent } from './tracker.component';
 
 export const trackerRoute: Route = {
   path: '',
-  component: JhiTrackerComponent,
+  component: TrackerComponent,
   data: {
     pageTitle: 'tracker.title'
   }

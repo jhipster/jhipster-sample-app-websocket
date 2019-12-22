@@ -1,9 +1,7 @@
 package io.github.jhipster.sample.web.rest;
 
-import io.github.jhipster.sample.JhipsterWebsocketSampleApplicationApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -17,10 +15,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Integration tests for the {@link ClientForwardController} REST controller.
+ * Unit tests for the {@link ClientForwardController} REST controller.
  */
-@SpringBootTest(classes = JhipsterWebsocketSampleApplicationApp.class)
-public class ClientForwardControllerIT {
+public class ClientForwardControllerTest {
 
     private MockMvc restMockMvc;
 
@@ -53,6 +50,24 @@ public class ClientForwardControllerIT {
         restMockMvc.perform(get("/admin/user-management"))
             .andExpect(status().isOk())
             .andExpect(forwardedUrl("/"));
+    }
+
+    @Test
+    public void getWebsocketInfoEndpoint() throws Exception {
+        restMockMvc.perform(get("/websocket/info"))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void getWebsocketEndpoint() throws Exception {
+        restMockMvc.perform(get("/websocket/tracker/308/sessionId/websocket"))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void getWebsocketFallbackEndpoint() throws Exception {
+        restMockMvc.perform(get("/websocket/tracker/308/sessionId/xhr_streaming"))
+            .andExpect(status().isNotFound());
     }
 
     @RestController
