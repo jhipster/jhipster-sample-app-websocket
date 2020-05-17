@@ -6,6 +6,6 @@ export const trackerRoute: Route = {
   path: '',
   component: TrackerComponent,
   data: {
-    pageTitle: 'tracker.title'
-  }
+    pageTitle: 'tracker.title',
+  },
 };

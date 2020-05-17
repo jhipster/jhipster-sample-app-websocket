@@ -6,7 +6,7 @@ import { TrackerActivity } from 'app/core/tracker/tracker-activity.model';
 
 @Component({
   selector: 'jhi-tracker',
-  templateUrl: './tracker.component.html'
+  templateUrl: './tracker.component.html',
 })
 export class TrackerComponent implements OnInit, OnDestroy {
   activities: TrackerActivity[] = [];
