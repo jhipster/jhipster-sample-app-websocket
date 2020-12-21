@@ -3,10 +3,8 @@ package io.github.jhipster.sample.web.websocket;
 import static io.github.jhipster.sample.config.WebsocketConfiguration.IP_ADDRESS;
 
 import io.github.jhipster.sample.web.websocket.dto.ActivityDTO;
-
 import java.security.Principal;
 import java.time.Instant;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;

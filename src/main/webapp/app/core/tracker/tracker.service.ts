@@ -21,7 +21,7 @@ export class TrackerService {
   constructor(private router: Router, private csrfService: CSRFService, private location: Location) {}
 
   connect(): void {
-    if (this.stompClient && this.stompClient.connected) {
+    if (this.stompClient?.connected) {
       return;
     }
 
@@ -29,7 +29,7 @@ export class TrackerService {
     let url = '/websocket/tracker';
     url = this.location.prepareExternalUrl(url);
     const socket: WebSocket = new SockJS(url);
-    this.stompClient = Stomp.over(socket);
+    this.stompClient = Stomp.over(socket, { protocols: ['v12.stomp'] });
     const headers: Stomp.ConnectionHeaders = {};
     headers['X-XSRF-TOKEN'] = this.csrfService.getCSRF('XSRF-TOKEN');
     this.stompClient.connect(headers, () => {
@@ -92,7 +92,7 @@ export class TrackerService {
   }
 
   private sendActivity(): void {
-    if (this.stompClient && this.stompClient.connected) {
+    if (this.stompClient?.connected) {
       this.stompClient.send(
         '/topic/activity', // destination
         JSON.stringify({ page: this.router.routerState.snapshot.url }), // body

@@ -1,10 +1,8 @@
 package io.github.jhipster.sample.config;
 
 import io.github.jhipster.sample.security.AuthoritiesConstants;
-
 import java.security.Principal;
 import java.util.*;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.*;
@@ -15,8 +13,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.*;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
-
-import io.github.jhipster.config.JHipsterProperties;
+import tech.jhipster.config.JHipsterProperties;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -37,8 +34,12 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        String[] allowedOrigins = Optional.ofNullable(jHipsterProperties.getCors().getAllowedOrigins()).map(origins -> origins.toArray(new String[0])).orElse(new String[0]);
-        registry.addEndpoint("/websocket/tracker")
+        String[] allowedOrigins = Optional
+            .ofNullable(jHipsterProperties.getCors().getAllowedOrigins())
+            .map(origins -> origins.toArray(new String[0]))
+            .orElse(new String[0]);
+        registry
+            .addEndpoint("/websocket/tracker")
             .setHandshakeHandler(defaultHandshakeHandler())
             .setAllowedOrigins(allowedOrigins)
             .withSockJS()
@@ -48,9 +49,13 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Bean
     public HandshakeInterceptor httpSessionHandshakeInterceptor() {
         return new HandshakeInterceptor() {
-
             @Override
-            public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
+            public boolean beforeHandshake(
+                ServerHttpRequest request,
+                ServerHttpResponse response,
+                WebSocketHandler wsHandler,
+                Map<String, Object> attributes
+            ) throws Exception {
                 if (request instanceof ServletServerHttpRequest) {
                     ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
                     attributes.put(IP_ADDRESS, servletRequest.getRemoteAddress());
@@ -59,9 +64,12 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
             }
 
             @Override
-            public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception exception) {
-
-            }
+            public void afterHandshake(
+                ServerHttpRequest request,
+                ServerHttpResponse response,
+                WebSocketHandler wsHandler,
+                Exception exception
+            ) {}
         };
     }
 
