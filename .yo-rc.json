@@ -18,7 +18,7 @@
     "testFrameworks": ["gatling", "protractor"],
     "languages": ["en"],
     "serverPort": 8080,
-    "jhipsterVersion": "7.0.1",
+    "jhipsterVersion": "7.1.0",
     "enableSocialSignIn": false,
     "rememberMeKey": "97c7efb72e69386921ee26bbbbbfa75b22c6c2a4",
     "useSass": true,
@@ -45,6 +45,7 @@
     "pages": [],
     "clientThemeVariant": "",
     "withAdminUi": true,
-    "nativeLanguage": "en"
+    "nativeLanguage": "en",
+    "devServerPort": 4200
   }
 }
