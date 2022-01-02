@@ -48,6 +48,16 @@ class ClientForwardControllerTest {
     }
 
     @Test
+    void getUnmappedDottedEndpoint() throws Exception {
+        restMockMvc.perform(get("/foo.js")).andExpect(status().isNotFound());
+    }
+
+    @Test
+    void getUnmappedNestedDottedEndpoint() throws Exception {
+        restMockMvc.perform(get("/foo/bar.js")).andExpect(status().isNotFound());
+    }
+
+    @Test
     void getWebsocketInfoEndpoint() throws Exception {
         restMockMvc.perform(get("/websocket/info")).andExpect(status().isNotFound());
     }
