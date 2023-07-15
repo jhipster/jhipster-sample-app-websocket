@@ -3,12 +3,15 @@ import { Subscription } from 'rxjs';
 
 import { TrackerService } from 'app/core/tracker/tracker.service';
 import { TrackerActivity } from 'app/core/tracker/tracker-activity.model';
+import SharedModule from 'app/shared/shared.module';
 
 @Component({
   selector: 'jhi-tracker',
+  standalone: true,
+  imports: [SharedModule],
   templateUrl: './tracker.component.html',
 })
-export class TrackerComponent implements OnInit, OnDestroy {
+export default class TrackerComponent implements OnInit, OnDestroy {
   activities: TrackerActivity[] = [];
   subscription?: Subscription;
 
@@ -34,14 +37,14 @@ export class TrackerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.trackerService.subscribe();
-    this.subscription = this.trackerService.receive().subscribe((activity: TrackerActivity) => {
-      this.showActivity(activity);
+    this.subscription = this.trackerService.subscribe({
+      next: (activity: TrackerActivity) => {
+        this.showActivity(activity);
+      },
     });
   }
 
   ngOnDestroy(): void {
-    this.trackerService.unsubscribe();
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
