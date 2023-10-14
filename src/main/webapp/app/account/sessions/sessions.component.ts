@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import SharedModule from 'app/shared/shared.module';
 import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
 import { Session } from './session.model';
 import { SessionsService } from './sessions.service';
-import { Account } from 'app/core/auth/account.model';
 
 @Component({
   selector: 'jhi-sessions',
@@ -18,7 +18,10 @@ export default class SessionsComponent implements OnInit {
   success = false;
   sessions: Session[] = [];
 
-  constructor(private sessionsService: SessionsService, private accountService: AccountService) {}
+  constructor(
+    private sessionsService: SessionsService,
+    private accountService: AccountService,
+  ) {}
 
   ngOnInit(): void {
     this.sessionsService.findAll().subscribe(sessions => (this.sessions = sessions));
@@ -35,7 +38,7 @@ export default class SessionsComponent implements OnInit {
         this.success = true;
         this.sessionsService.findAll().subscribe(sessions => (this.sessions = sessions));
       },
-      () => (this.error = true)
+      () => (this.error = true),
     );
   }
 }

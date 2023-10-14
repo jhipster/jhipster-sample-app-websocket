@@ -9,7 +9,10 @@ import { Session } from './session.model';
 export class SessionsService {
   private resourceUrl = this.applicationConfigService.getEndpointFor('api/account/sessions/');
 
-  constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
+  constructor(
+    private http: HttpClient,
+    private applicationConfigService: ApplicationConfigService,
+  ) {}
 
   findAll(): Observable<Session[]> {
     return this.http.get<Session[]>(this.resourceUrl);

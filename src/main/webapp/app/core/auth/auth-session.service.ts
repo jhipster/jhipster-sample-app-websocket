@@ -3,12 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ApplicationConfigService } from '../config/application-config.service';
 import { Login } from 'app/login/login.model';
+import { ApplicationConfigService } from '../config/application-config.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthServerProvider {
-  constructor(private http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
+  constructor(
+    private http: HttpClient,
+    private applicationConfigService: ApplicationConfigService,
+  ) {}
 
   login(credentials: Login): Observable<{}> {
     const data =
@@ -28,7 +31,7 @@ export class AuthServerProvider {
       map(() => {
         // to get a new csrf token call the api
         this.http.get(this.applicationConfigService.getEndpointFor('api/account')).subscribe();
-      })
+      }),
     );
   }
 }

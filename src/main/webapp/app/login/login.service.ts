@@ -13,7 +13,7 @@ export class LoginService {
   constructor(
     private applicationConfigService: ApplicationConfigService,
     private accountService: AccountService,
-    private authServerProvider: AuthServerProvider
+    private authServerProvider: AuthServerProvider,
   ) {}
 
   login(credentials: Login): Observable<Account | null> {

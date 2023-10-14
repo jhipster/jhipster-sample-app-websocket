@@ -110,7 +110,7 @@ Cypress.Commands.add('login', (username: string, password: string) => {
       validate() {
         cy.authenticatedRequest({ url: '/api/account' }).its('status').should('eq', 200);
       },
-    }
+    },
   );
 });
 

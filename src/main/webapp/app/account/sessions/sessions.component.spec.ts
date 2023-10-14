@@ -51,7 +51,7 @@ describe('SessionsComponent', () => {
       expect(comp.error).toBe(false);
       expect(comp.account).toEqual(account);
       expect(comp.sessions).toEqual(sessions);
-    })
+    }),
   ));
 
   it('should call delete on Sessions to invalidate a session', inject(
@@ -66,7 +66,7 @@ describe('SessionsComponent', () => {
       tick();
 
       expect(service.delete).toHaveBeenCalledWith('xyz');
-    })
+    }),
   ));
 
   it('should call delete on Sessions and notify of error', inject(
@@ -82,7 +82,7 @@ describe('SessionsComponent', () => {
 
       expect(comp.success).toBe(false);
       expect(comp.error).toBe(true);
-    })
+    }),
   ));
 
   it('should call notify of success upon session invalidation', inject(
@@ -98,6 +98,6 @@ describe('SessionsComponent', () => {
 
       expect(comp.error).toBe(false);
       expect(comp.success).toBe(true);
-    })
+    }),
   ));
 });

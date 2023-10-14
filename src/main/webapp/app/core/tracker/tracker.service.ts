@@ -8,9 +8,9 @@ import SockJS from 'sockjs-client';
 import { RxStomp } from '@stomp/rx-stomp';
 
 import { CSRFService } from 'app/core/auth/csrf.service';
-import { TrackerActivity } from './tracker-activity.model';
 import { AccountService } from '../auth/account.service';
 import { Account } from '../auth/account.model';
+import { TrackerActivity } from './tracker-activity.model';
 
 const DESTINATION_TRACKER = '/topic/tracker';
 const DESTINATION_ACTIVITY = '/topic/activity';
@@ -24,7 +24,7 @@ export class TrackerService {
     private router: Router,
     private accountService: AccountService,
     private csrfService: CSRFService,
-    private location: Location
+    private location: Location,
   ) {}
 
   setup(): void {
