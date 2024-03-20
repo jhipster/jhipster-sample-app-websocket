@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { Subscription, Observer } from 'rxjs';
@@ -20,12 +20,10 @@ export class TrackerService {
   private rxStomp?: RxStomp;
   private routerSubscription: Subscription | null = null;
 
-  constructor(
-    private router: Router,
-    private accountService: AccountService,
-    private csrfService: CSRFService,
-    private location: Location,
-  ) {}
+  private router = inject(Router);
+  private accountService = inject(AccountService);
+  private csrfService = inject(CSRFService);
+  private location = inject(Location);
 
   setup(): void {
     this.rxStomp = new RxStomp();

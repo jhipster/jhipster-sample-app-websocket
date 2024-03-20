@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { TrackerService } from 'app/core/tracker/tracker.service';
@@ -15,7 +15,7 @@ export default class TrackerComponent implements OnInit, OnDestroy {
   activities: TrackerActivity[] = [];
   subscription?: Subscription;
 
-  constructor(private trackerService: TrackerService) {}
+  private trackerService = inject(TrackerService);
 
   showActivity(activity: TrackerActivity): void {
     let existingActivity = false;
