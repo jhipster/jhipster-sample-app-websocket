@@ -68,6 +68,13 @@ export class TrackerService {
     );
   }
 
+  sendActivity(): void {
+    this.stomp.publish({
+      destination: DESTINATION_ACTIVITY,
+      body: JSON.stringify({ page: this.router.routerState.snapshot.url }),
+    });
+  }
+
   private connect(): void {
     this.updateCredentials();
     return this.stomp.activate();
@@ -94,13 +101,6 @@ export class TrackerService {
       connectHeaders: {
         ['X-XSRF-TOKEN']: this.csrfService.getCSRF('XSRF-TOKEN'),
       },
-    });
-  }
-
-  private sendActivity(): void {
-    this.stomp.publish({
-      destination: DESTINATION_ACTIVITY,
-      body: JSON.stringify({ page: this.router.routerState.snapshot.url }),
     });
   }
 }

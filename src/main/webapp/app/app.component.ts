@@ -12,8 +12,8 @@ import MainComponent from './layouts/main/main.component';
 import { TrackerService } from './core/tracker/tracker.service';
 
 @Component({
-  selector: 'jhi-app',
   standalone: true,
+  selector: 'jhi-app',
   template: '<jhi-main></jhi-main>',
   imports: [
     MainComponent,

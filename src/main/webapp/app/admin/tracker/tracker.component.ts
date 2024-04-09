@@ -6,8 +6,8 @@ import { TrackerActivity } from 'app/core/tracker/tracker-activity.model';
 import SharedModule from 'app/shared/shared.module';
 
 @Component({
-  selector: 'jhi-tracker',
   standalone: true,
+  selector: 'jhi-tracker',
   imports: [SharedModule],
   templateUrl: './tracker.component.html',
 })
@@ -42,6 +42,7 @@ export default class TrackerComponent implements OnInit, OnDestroy {
         this.showActivity(activity);
       },
     });
+    this.trackerService.sendActivity();
   }
 
   ngOnDestroy(): void {
