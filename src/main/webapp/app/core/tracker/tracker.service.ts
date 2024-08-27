@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router, NavigationEnd, Event } from '@angular/router';
-import { Subscription, Observer } from 'rxjs';
+import { Event, NavigationEnd, Router } from '@angular/router';
+import { Observer, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import SockJS from 'sockjs-client';
@@ -99,7 +99,7 @@ export class TrackerService {
     this.stomp.configure({
       webSocketFactory: () => SockJS(this.buildUrl()),
       connectHeaders: {
-        ['X-XSRF-TOKEN']: this.csrfService.getCSRF('XSRF-TOKEN'),
+        'X-XSRF-TOKEN': this.csrfService.getCSRF('XSRF-TOKEN'),
       },
     });
   }
