@@ -20,10 +20,10 @@ export class TrackerService {
   private rxStomp?: RxStomp;
   private routerSubscription: Subscription | null = null;
 
-  private router = inject(Router);
-  private accountService = inject(AccountService);
-  private csrfService = inject(CSRFService);
-  private location = inject(Location);
+  private readonly router = inject(Router);
+  private readonly accountService = inject(AccountService);
+  private readonly csrfService = inject(CSRFService);
+  private readonly location = inject(Location);
 
   setup(): void {
     this.rxStomp = new RxStomp();

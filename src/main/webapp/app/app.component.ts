@@ -21,10 +21,10 @@ import { TrackerService } from './core/tracker/tracker.service';
   ],
 })
 export default class AppComponent {
-  private applicationConfigService = inject(ApplicationConfigService);
-  private iconLibrary = inject(FaIconLibrary);
-  private trackerService = inject(TrackerService);
-  private dpConfig = inject(NgbDatepickerConfig);
+  private readonly applicationConfigService = inject(ApplicationConfigService);
+  private readonly iconLibrary = inject(FaIconLibrary);
+  private readonly trackerService = inject(TrackerService);
+  private readonly dpConfig = inject(NgbDatepickerConfig);
 
   constructor() {
     this.trackerService.setup();

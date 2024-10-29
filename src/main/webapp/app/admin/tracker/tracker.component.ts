@@ -15,7 +15,7 @@ export default class TrackerComponent implements OnInit, OnDestroy {
   activities: TrackerActivity[] = [];
   subscription?: Subscription;
 
-  private trackerService = inject(TrackerService);
+  private readonly trackerService = inject(TrackerService);
 
   showActivity(activity: TrackerActivity): void {
     let existingActivity = false;
