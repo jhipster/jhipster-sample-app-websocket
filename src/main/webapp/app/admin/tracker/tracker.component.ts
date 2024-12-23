@@ -6,7 +6,6 @@ import { TrackerActivity } from 'app/core/tracker/tracker-activity.model';
 import SharedModule from 'app/shared/shared.module';
 
 @Component({
-  standalone: true,
   selector: 'jhi-tracker',
   imports: [SharedModule],
   templateUrl: './tracker.component.html',
