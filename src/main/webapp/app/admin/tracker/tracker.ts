@@ -1,14 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 
+import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { TrackerActivity } from 'app/core/tracker/tracker-activity.model';
 import { TrackerService } from 'app/core/tracker/tracker.service';
-import SharedModule from 'app/shared/shared.module';
+import { TranslateDirective } from 'app/shared/language';
 
 @Component({
   selector: 'jhi-tracker',
-  imports: [SharedModule],
+  imports: [DatePipe, TranslateDirective, TranslateModule],
   templateUrl: './tracker.html',
 })
 export default class Tracker implements OnInit, OnDestroy {

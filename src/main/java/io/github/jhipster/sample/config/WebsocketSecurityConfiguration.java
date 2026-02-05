@@ -1,17 +1,22 @@
 package io.github.jhipster.sample.config;
 
 import io.github.jhipster.sample.security.AuthoritiesConstants;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.SimpMessageType;
-import org.springframework.security.config.annotation.web.messaging.MessageSecurityMetadataSourceRegistry;
-import org.springframework.security.config.annotation.web.socket.AbstractSecurityWebSocketMessageBrokerConfigurer;
+import org.springframework.security.authorization.AuthorizationManager;
+import org.springframework.security.config.annotation.web.socket.EnableWebSocketSecurity;
+import org.springframework.security.messaging.access.intercept.MessageMatcherDelegatingAuthorizationManager;
 
 @Configuration
-public class WebsocketSecurityConfiguration extends AbstractSecurityWebSocketMessageBrokerConfigurer {
+@EnableWebSocketSecurity
+public class WebsocketSecurityConfiguration {
 
-    @Override
-    protected void configureInbound(MessageSecurityMetadataSourceRegistry messages) {
-        messages
+    @Bean
+    public AuthorizationManager<Message<?>> messageAuthorizationManager() {
+        // Define specific authorization rules
+        return MessageMatcherDelegatingAuthorizationManager.builder()
             .nullDestMatcher()
             .authenticated()
             .simpDestMatchers("/topic/tracker")
@@ -25,8 +30,8 @@ public class WebsocketSecurityConfiguration extends AbstractSecurityWebSocketMes
             // message types other than MESSAGE and SUBSCRIBE
             .simpTypeMatchers(SimpMessageType.MESSAGE, SimpMessageType.SUBSCRIBE)
             .denyAll()
-            // catch all
             .anyMessage()
-            .denyAll();
+            .denyAll()
+            .build();
     }
 }

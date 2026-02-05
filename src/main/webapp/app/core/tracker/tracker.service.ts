@@ -8,6 +8,8 @@ import { filter, map } from 'rxjs/operators';
 import SockJS from 'sockjs-client';
 
 import { CSRFService } from 'app/core/auth/csrf.service';
+import { CSRF_TOKEN_COOKIE_NAME, CSRF_TOKEN_HEADER_NAME } from 'app/shared/jhipster/constants';
+import { encodeCsrfToken } from 'app/shared/jhipster/encode-csrf-token';
 import { Account } from '../auth/account.model';
 import { AccountService } from '../auth/account.service';
 
@@ -100,7 +102,7 @@ export class TrackerService {
     this.stomp.configure({
       webSocketFactory: () => SockJS(this.buildUrl()),
       connectHeaders: {
-        'X-XSRF-TOKEN': this.csrfService.getCSRF('XSRF-TOKEN'),
+        [CSRF_TOKEN_HEADER_NAME]: encodeCsrfToken(this.csrfService.getCSRF(CSRF_TOKEN_COOKIE_NAME)),
       },
     });
   }
