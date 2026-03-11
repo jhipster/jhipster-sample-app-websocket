@@ -14,7 +14,7 @@ import { TranslateDirective } from 'app/shared/language';
   templateUrl: './tracker.html',
 })
 export default class Tracker implements OnInit, OnDestroy {
-  activities = signal<TrackerActivity[]>([]);
+  readonly activities = signal<TrackerActivity[]>([]);
   subscription?: Subscription;
 
   private readonly trackerService = inject(TrackerService);

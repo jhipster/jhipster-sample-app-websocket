@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, effect, inject } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 
 import { RxStomp } from '@stomp/rx-stomp';
@@ -10,7 +10,6 @@ import SockJS from 'sockjs-client';
 import { CSRFService } from 'app/core/auth/csrf.service';
 import { CSRF_TOKEN_COOKIE_NAME, CSRF_TOKEN_HEADER_NAME } from 'app/shared/jhipster/constants';
 import { encodeCsrfToken } from 'app/shared/jhipster/encode-csrf-token';
-import { Account } from '../auth/account.model';
 import { AccountService } from '../auth/account.service';
 
 import { TrackerActivity } from './tracker-activity.model';
@@ -35,14 +34,12 @@ export class TrackerService {
       debug: (msg: string): void => console.log(new Date(), msg),
     });
 
-    this.accountService.getAuthenticationState().subscribe({
-      next: (account: Account | null) => {
-        if (account) {
-          this.connect();
-        } else {
-          this.disconnect();
-        }
-      },
+    effect(() => {
+      if (this.accountService.account()) {
+        this.connect();
+      } else {
+        this.disconnect();
+      }
     });
 
     this.rxStomp.connected$.subscribe(() => {
