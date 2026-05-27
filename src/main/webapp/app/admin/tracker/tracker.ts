@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { TranslateDirective } from 'app/shared/language';
 
 @Component({
   selector: 'jhi-tracker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DatePipe, TranslateDirective, TranslateModule],
   templateUrl: './tracker.html',
 })

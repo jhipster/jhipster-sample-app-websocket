@@ -3,8 +3,7 @@ import { Injectable, effect, inject } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 
 import { RxStomp } from '@stomp/rx-stomp';
-import { Observer, Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observer, Subscription, filter, map } from 'rxjs';
 import SockJS from 'sockjs-client';
 
 import { CSRFService } from 'app/core/auth/csrf.service';
