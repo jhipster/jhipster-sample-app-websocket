@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
-import { Injectable, effect, inject } from '@angular/core';
+import { Service, effect, inject } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 
 import { RxStomp } from '@stomp/rx-stomp';
 import { Observer, Subscription, filter, map } from 'rxjs';
 import SockJS from 'sockjs-client';
 
-import { CSRFService } from 'app/core/auth/csrf.service';
+import { CSRFService } from 'app/core/auth';
 import { CSRF_TOKEN_COOKIE_NAME, CSRF_TOKEN_HEADER_NAME } from 'app/shared/jhipster/constants';
 import { encodeCsrfToken } from 'app/shared/jhipster/encode-csrf-token';
 import { AccountService } from '../auth/account.service';
@@ -16,7 +16,7 @@ import { TrackerActivity } from './tracker-activity.model';
 const DESTINATION_TRACKER = '/topic/tracker';
 const DESTINATION_ACTIVITY = '/topic/activity';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class TrackerService {
   private rxStomp?: RxStomp;
   private routerSubscription: Subscription | null = null;
